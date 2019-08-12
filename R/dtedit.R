@@ -138,7 +138,7 @@ dtedit <- function(input, output, name, thedata,
 	}
 
 	valid.input.types <- c('dateInput', 'selectInput', 'numericInput',
-						   'textInput', 'textAreaInput', 'passwordInput', 'selectInputMultiple')
+						   'textInput', 'textAreaInput', 'passwordInput', 'selectInputMultiple','checkboxInput')
 	inputTypes <- sapply(thedata[,edit.cols], FUN=function(x) {
 		switch(class(x),
 			   list = 'selectInputMultiple',
@@ -146,7 +146,8 @@ dtedit <- function(input, output, name, thedata,
 			   Date = 'dateInput',
 			   factor = 'selectInput',
 			   integer = 'numericInput',
-			   numeric = 'numericInput')
+			   numeric = 'numericInput',
+			   logical='checkboxInput')
 	})
 	if(!missing(input.types)) {
 		if(!all(names(input.types) %in% edit.cols)) {
