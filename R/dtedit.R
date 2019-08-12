@@ -233,12 +233,20 @@ dtedit <- function(input, output, name, thedata,
 										 label=edit.label.cols[i],
 										 value=value,
 										 width=text.width)
+			
+										 
 			} else if(inputTypes[i] == 'passwordInput') {
 				value <- ifelse(missing(values), '', values[,edit.cols[i]])
 				fields[[i]] <- shiny::passwordInput(paste0(name, typeName, edit.cols[i]),
 										 label=edit.label.cols[i],
 										 value=value,
-										 width=text.width)
+										 width=text.width)	
+            } else if(inputTypes[i] == 'checkboxInput') {
+				value <- ifelse(missing(values), '', values[,edit.cols[i]])
+				fields[[i]] <- shiny::checkboxInput(paste0(name, typeName, edit.cols[i]),
+										 label=edit.label.cols[i],
+										 value=value,
+										 width=text.width)										 
 			} else {
 				stop('Invalid input type!')
 			}
