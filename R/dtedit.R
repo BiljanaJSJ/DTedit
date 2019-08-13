@@ -243,8 +243,9 @@ dtedit <- function(input, output, name, thedata,
 										 value=value,
 										 width=text.width)	
             } else if(inputTypes[i] == 'checkboxInput') {
-				value <- ifelse(missing(values), '', values[,edit.cols[i]])
-				fields[[i]] <- shiny::checkboxInput(paste0(name, typeName, edit.cols[i]),
+         #browser()
+				value <- ifelse(missing(values), FALSE, values[,edit.cols[i]])
+				fields[[i]] <- shiny::checkboxInput(paste0(name, typeName, ifelse(is.null(edit.cols[i]),FALSE,edit.cols[i])),
 										 label=edit.label.cols[i],
 										 value=value,
 										 width=text.width)										 
@@ -329,7 +330,7 @@ dtedit <- function(input, output, name, thedata,
 	}
 
 	##### Copy functions #######################################################
-
+  #browser()
 	observeEvent(input[[paste0(name, '_copy')]], {
 		row <- input[[paste0(name, 'dt_rows_selected')]]
 		if(!is.null(row)) {
